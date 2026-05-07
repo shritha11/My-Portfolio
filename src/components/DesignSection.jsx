@@ -6,13 +6,13 @@ function DesignSection() {
 
     <section className="design-section">
 
-      <div className="section-header">
+      <div className="section-container">
 
-        <p className="section-tag">
+        <p className="design-mini-title">
           DESIGN PROJECTS
         </p>
 
-        <h2>
+        <h2 className="design-heading">
           Selected Case Studies
         </h2>
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
 import DevelopmentSection from './components/DevelopmentSection';
-import HeroPhoto from './HeroPhoto';
 import DesignSection from "./components/DesignSection";
 import LogoMarquee from "./components/LogoMarquee";
 import Collage from "./components/CollageComponent";
@@ -492,7 +491,7 @@ function ExperienceSection() {
   <div className="experience-container">
 
     <div className="experience-heading">
-      <p>// SELECTED EXPERIENCE</p>
+      <p>//SELECTED EXPERIENCE</p>
     </div>
 
     <div className="experience-list">
