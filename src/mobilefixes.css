@@ -1,0 +1,151 @@
+.hero {
+  transform: none !important;
+  padding: 4rem 120px !important;
+}
+
+.hero-left {
+  transform: none !important;
+}
+
+.video-card video {
+  object-fit: contain !important;
+  background: #000;
+}
+
+.anime-video-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.anime-video {
+  width: 100% !important;
+  max-width: 420px;
+  height: auto !important;
+  max-height: 75vh;
+  object-fit: contain !important;
+  border-radius: 24px;
+}
+
+/* ── TABLET (820px iPad) */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 3rem 40px !important;
+    gap: 1.5rem;
+    min-height: auto;
+  }
+
+  .hero-left {
+    width: 50%;
+  }
+
+  .hero-right {
+    width: 50%;
+    display: flex !important;
+  }
+
+  .anime-video {
+    max-height: 60vh;
+  }
+}
+
+/* ── MOBILE (max 768px) */
+@media (max-width: 768px) {
+  /* Hero — fix the gap completely */
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 2rem 1.2rem !important;
+    min-height: auto !important;
+    gap: 2rem !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  .hero-left {
+    width: 100% !important;
+    transform: none !important;
+    max-width: 100% !important;
+  }
+
+  /* Anime on mobile — show it below the text, smaller */
+  .hero-right {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .anime-video-wrap {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .anime-video {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 40vh !important;
+    object-fit: contain !important;
+    border-radius: 20px;
+    filter: brightness(0.8) contrast(1.05);
+  }
+
+  /* Dev videos — show full video uncropped */
+  .video-card video {
+    height: auto !important;
+    max-height: 60vh !important;
+    width: 100% !important;
+    object-fit: contain !important;
+    background: #000 !important;
+    border-radius: 16px !important;
+  }
+
+  .video-card {
+    min-width: unset !important;
+  }
+
+  /* Remove section gaps */
+  .section {
+    padding: 3rem 1.2rem !important;
+  }
+
+  /* Nav — hide links on mobile */
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav {
+    padding: 1rem 1.2rem !important;
+  }
+
+  .nav-cta {
+    display: flex !important;
+    font-size: 0.68rem;
+  }
+
+  /* Projects section padding */
+  .projects-section {
+    padding: 20px 0 !important;
+  }
+
+  .swiper {
+    padding: 0 12px !important;
+  }
+}
+
+/*SMALL MOBILE (max 480px) */
+@media (max-width: 480px) {
+  .hero {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .anime-video {
+    max-height: 30vh !important;
+  }
+
+  .video-card video {
+    max-height: 50vh !important;
+  }
+}
