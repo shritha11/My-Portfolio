@@ -4,6 +4,7 @@ import DevelopmentSection from './components/DevelopmentSection';
 import DesignSection from "./components/DesignSection";
 import LogoMarquee from "./components/LogoMarquee";
 import Collage from "./components/CollageComponent";
+import BottomNav from './components/BottomNav';
 
 function EntryScreen({ onEnter }) {
   const [glitch, setGlitch] = useState(false);
@@ -550,6 +551,7 @@ export default function App() {
         <Collage />
         <LogoMarquee />
         <Footer />
+        <BottomNav /> 
       </div>
     </div>
   );
