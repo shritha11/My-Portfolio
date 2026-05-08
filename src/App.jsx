@@ -4,8 +4,6 @@ import DevelopmentSection from './components/DevelopmentSection';
 import DesignSection from "./components/DesignSection";
 import LogoMarquee from "./components/LogoMarquee";
 import Collage from "./components/CollageComponent";
-import './responsive.css';
-import './mobilefixes.css';
 
 function EntryScreen({ onEnter }) {
   const [glitch, setGlitch] = useState(false);
