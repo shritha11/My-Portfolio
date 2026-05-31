@@ -16,12 +16,15 @@
   --font-mono: 'Space Mono', monospace;
 }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-display);
+}
+
+.app {
   overflow-x: hidden;
 }
 
@@ -29,13 +32,11 @@ body {
 
 .main-content {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.8s ease;
 }
 
 .main-visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .entry-overlay {
@@ -498,7 +499,6 @@ body {
   margin-bottom: 4rem;
 }
 
-
 .tab-row {
   display: flex;
   gap: 0;
@@ -677,7 +677,6 @@ body {
 
 .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
 
-
 .design-section {
   padding: 8rem 4rem;
   background: black;
@@ -751,7 +750,6 @@ body {
 .design-content h3 { color: white; font-size: 28px; margin-bottom: 14px; }
 .design-content p { color: #aaa; line-height: 1.6; }
 
-
 .projects-section {
   width: 100%;
   padding: 2rem 0;
@@ -794,7 +792,6 @@ body {
 .inactive { opacity: 0.2; transform: scale(0.8); filter: blur(6px); }
 
 video { pointer-events: none; }
-
 
 .experience-section {
   width: 100%;
@@ -853,7 +850,6 @@ video { pointer-events: none; }
 
 .experience-card p { margin-top: 1rem; color: #cfcfcf; line-height: 1.8; font-size: 1.2rem; }
 
-
 .collage-section {
   width: 100%;
   padding: 120px 0;
@@ -898,7 +894,6 @@ video { pointer-events: none; }
   100% { transform: translate(-50%,-50%) scale(1); }
 }
 
-
 .logo-marquee {
   width: 100%;
   overflow: hidden;
@@ -934,7 +929,6 @@ video { pointer-events: none; }
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-
 
 .footer {
   border-top: 1px solid var(--border);
@@ -1061,10 +1055,9 @@ video { pointer-events: none; }
   .logo-track { gap: 40px; }
 }
 
-
 @media (max-width: 768px) {
 
-
+  /* BOTTOM NAV */
   .bottom-nav-float {
     display: block;
   }
@@ -1123,12 +1116,13 @@ video { pointer-events: none; }
     letter-spacing: 0.03em;
   }
 
-
+  /* HIDE TOP NAV */
   .nav { display: none !important; }
 
   /* MAIN CONTENT PADDING for bottom nav */
   .main-content { padding-bottom: 90px; }
 
+  /* HERO — side by side */
   .hero {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
@@ -1182,7 +1176,7 @@ video { pointer-events: none; }
     border-radius: 16px !important;
   }
 
-  
+
   .section { padding: 3rem 1rem !important; }
 
 
@@ -1206,7 +1200,7 @@ video { pointer-events: none; }
     border-radius: 14px !important;
   }
 
-
+ 
   .design-section { padding: 2.5rem 1rem !important; }
   .design-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
   .design-heading { font-size: clamp(1.8rem, 7vw, 2.5rem) !important; letter-spacing: -1px !important; }
@@ -1227,10 +1221,10 @@ video { pointer-events: none; }
   .collage-section { padding: 2rem 0 !important; }
   .collage-image { width: 92% !important; border-radius: 18px !important; }
 
-
   .logo-item { width: 56px !important; height: 56px !important; font-size: 28px !important; border-radius: 12px !important; }
   .logo-track { gap: 24px !important; }
   .logo-marquee { padding: 30px 0 !important; }
+
 
   .footer { padding: 3rem 1rem 6rem !important; }
   .footer-inner { flex-direction: column !important; gap: 1.5rem !important; margin-bottom: 1.5rem !important; }
@@ -1238,14 +1232,16 @@ video { pointer-events: none; }
   .footer-socials { align-items: flex-start !important; flex-direction: row !important; flex-wrap: wrap !important; gap: 0.7rem !important; }
   .footer-bottom { flex-direction: column !important; gap: 0.4rem !important; text-align: center !important; font-size: 0.6rem !important; }
 
+
   .entry-box { width: 88vw !important; max-width: 340px !important; }
   .entry-msg { font-size: 1rem !important; }
   .entry-btns { flex-direction: column !important; gap: 0.7rem !important; }
   .entry-btn-primary, .entry-btn-secondary { width: 100% !important; }
 
- 
+
   .marquee-item { font-size: 0.6rem !important; }
 }
+
 
 @media (max-width: 390px) {
   .hero { padding: 1rem 0.75rem !important; gap: 0.6rem !important; }
