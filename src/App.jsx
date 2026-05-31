@@ -6,6 +6,7 @@ import LogoMarquee from './components/LogoMarquee';
 import Collage from './components/CollageComponent';
 import BottomNav from './components/BottomNav';
 
+
 function EntryScreen({ onEnter }) {
   const [glitch, setGlitch] = useState(false);
 
@@ -131,6 +132,7 @@ function AsciiWebcam() {
   );
 }
 
+
 function Typewriter() {
   const phrases = [
     'making products people actually love.',
@@ -162,6 +164,7 @@ function Typewriter() {
   );
 }
 
+
 function Nav() {
   const links = ['Home', 'About', 'Projects', 'Contact'];
   return (
@@ -178,6 +181,7 @@ function Nav() {
     </nav>
   );
 }
+
 
 function Hero() {
   const [showText, setShowText] = useState(false);
@@ -227,6 +231,7 @@ function Hero() {
     </section>
   );
 }
+
 
 function Marquee() {
   const items = ['UI/UX DESIGN', 'REACT', 'FLUTTER', 'FIGMA', 'USER RESEARCH', 'PRODUCT THINKING', 'INTERACTION DESIGN', 'DART', 'FIREBASE', 'PROTOTYPING', 'HTML/CSS', 'PYTHON', 'SQL'];
@@ -391,6 +396,7 @@ function Projects() {
   );
 }
 
+
 function About() {
   const skills = ['Figma', 'React', 'Flutter', 'Dart', 'JavaScript', 'HTML/CSS', 'Python', 'Firebase', 'MySQL', 'User Research', 'Wireframing', 'Prototyping'];
 
@@ -514,8 +520,8 @@ export default function App() {
         <Collage />
         <LogoMarquee />
         <Footer />
-        <BottomNav />
       </div>
+      <BottomNav />
     </div>
   );
 }
