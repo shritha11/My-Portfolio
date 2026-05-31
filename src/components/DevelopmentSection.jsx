@@ -3,7 +3,7 @@ import projects from "../data/projects";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-function DevelopmentSection() {
+export default function DevelopmentSection() {
   const swiperRef = useRef(null);
   const videoRefs = useRef([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -19,37 +19,37 @@ function DevelopmentSection() {
     const currentVideo = videoRefs.current[activeIndex];
     if (currentVideo) {
       currentVideo.currentTime = 0;
-      currentVideo.play();
+      currentVideo.play().catch(() => {});
     }
   }, [activeIndex]);
 
   const handleVideoEnd = () => {
     const nextIndex = (activeIndex + 1) % projects.length;
     setActiveIndex(nextIndex);
-    swiperRef.current.slideTo(nextIndex);
+    if (swiperRef.current) swiperRef.current.slideTo(nextIndex);
   };
 
   return (
     <div className="projects-section">
       <div className="section-header">
         <p className="section-tag">DEVELOPMENT [REACT] PROJECTS</p>
-        <h2>Selected Projects</h2>
+        <h2 style={{ color: "white", textAlign: "center", fontFamily: "var(--font-display)" }}>
+          Selected Projects
+        </h2>
       </div>
-
       <Swiper
         centeredSlides={true}
-        slidesPerView={isMobile ? 1.1 : 1.4}
-        spaceBetween={isMobile ? 16 : 40}
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
+        slidesPerView={isMobile ? 1.05 : 1.4}
+        spaceBetween={isMobile ? 12 : 40}
+        onSwiper={(swiper) => { swiperRef.current = swiper; }}
+        onSlideChange={(swiper) => { setActiveIndex(swiper.activeIndex); }}
+        style={{
+          paddingLeft: isMobile ? "8px" : "0",
+          paddingRight: isMobile ? "8px" : "0",
         }}
-        onSlideChange={(swiper) => {
-          setActiveIndex(swiper.activeIndex);
-        }}
-        style={{ paddingLeft: isMobile ? "10px" : "0", paddingRight: isMobile ? "10px" : "0" }}
       >
         {projects.map((project, index) => (
-          <SwiperSlide key={project.id + "-" + index}>
+          <SwiperSlide key={`${project.id}-${index}`}>
             <div
               className={`video-card ${activeIndex === index ? "active" : "inactive"}`}
               onClick={() => window.open(project.live)}
@@ -63,7 +63,7 @@ function DevelopmentSection() {
                 style={{
                   width: "100%",
                   height: isMobile ? "50vh" : "80vh",
-                  objectFit: "cover",
+                  objectFit: isMobile ? "contain" : "cover",
                   borderRadius: isMobile ? "16px" : "24px",
                   background: "black",
                   display: "block",
@@ -74,7 +74,7 @@ function DevelopmentSection() {
                 textAlign: "center",
                 marginTop: "12px",
                 fontSize: isMobile ? "15px" : "20px",
-                fontFamily: "'Syne', sans-serif",
+                fontFamily: "var(--font-display)",
               }}>
                 {project.title}
               </h3>
@@ -85,5 +85,3 @@ function DevelopmentSection() {
     </div>
   );
 }
-
-export default DevelopmentSection;

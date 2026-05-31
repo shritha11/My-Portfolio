@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
 import DevelopmentSection from './components/DevelopmentSection';
-import DesignSection from "./components/DesignSection";
-import LogoMarquee from "./components/LogoMarquee";
-import Collage from "./components/CollageComponent";
+import DesignSection from './components/DesignSection';
+import LogoMarquee from './components/LogoMarquee';
+import Collage from './components/CollageComponent';
 import BottomNav from './components/BottomNav';
 
 function EntryScreen({ onEnter }) {
   const [glitch, setGlitch] = useState(false);
+
   useEffect(() => {
     const t = setInterval(() => {
       setGlitch(true);
@@ -41,6 +42,19 @@ function EntryScreen({ onEnter }) {
 }
 
 const ASCII_CHARS = '@#S%?*+;:,. ';
+
+const STATIC_ASCII = `
+  ░░░░░░░░░░░░░░░░░░
+░░  ╭──────────────╮  ░
+░  │  ◉        ◉  │  ░
+░  │      ▽       │  ░
+░  │   ╰──────╯   │  ░
+░░  ╰──────────────╯  ░
+  ░░  ╭──────────╮  ░░
+  ░░  │ SHRITHA  │  ░░
+  ░░  ╰──────────╯  ░░
+  ░  designer.exe   ░
+  ░░░░░░░░░░░░░░░░░░`;
 
 function AsciiWebcam() {
   const videoRef = useRef(null);
@@ -77,7 +91,7 @@ function AsciiWebcam() {
     for (let y = 0; y < H; y++) {
       for (let x = 0; x < W; x++) {
         const i = (y * W + x) * 4;
-        const bright = (data[i] * 0.299 + data[i+1] * 0.587 + data[i+2] * 0.114) / 255;
+        const bright = (data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114) / 255;
         ascii += ASCII_CHARS[Math.floor(bright * (ASCII_CHARS.length - 1))];
       }
       ascii += '\n';
@@ -87,9 +101,7 @@ function AsciiWebcam() {
   }, []);
 
   useEffect(() => {
-    if (active) {
-      animRef.current = requestAnimationFrame(renderAscii);
-    }
+    if (active) animRef.current = requestAnimationFrame(renderAscii);
     return () => cancelAnimationFrame(animRef.current);
   }, [active, renderAscii]);
 
@@ -118,19 +130,6 @@ function AsciiWebcam() {
     </div>
   );
 }
-
-const STATIC_ASCII = `
-  ░░░░░░░░░░░░░░░░░░
-░░  ╭──────────────╮  ░
-░  │  ◉        ◉  │  ░
-░  │      ▽       │  ░
-░  │   ╰──────╯   │  ░
-░░  ╰──────────────╯  ░
-  ░░  ╭──────────╮  ░░
-  ░░  │ SHRITHA  │  ░░
-  ░░  ╰──────────╯  ░░
-  ░  designer.exe   ░
-  ░░░░░░░░░░░░░░░░░░`;
 
 function Typewriter() {
   const phrases = [
@@ -163,7 +162,7 @@ function Typewriter() {
   );
 }
 
-function Nav({ active }) {
+function Nav() {
   const links = ['Home', 'About', 'Projects', 'Contact'];
   return (
     <nav className="nav">
@@ -171,7 +170,7 @@ function Nav({ active }) {
       <ul className="nav-links">
         {links.map(l => (
           <li key={l}>
-            <a href={`#${l}`} className={active === l ? 'nav-active' : ''}>{l}</a>
+            <a href={`#${l.toLowerCase()}`}>{l}</a>
           </li>
         ))}
       </ul>
@@ -181,62 +180,50 @@ function Nav({ active }) {
 }
 
 function Hero() {
-  const [showText, setShowText] =
-  useState(false);
+  const [showText, setShowText] = useState(false);
 
-useEffect(() => {
+  useEffect(() => {
+    const timer = setTimeout(() => setShowText(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
-  const timer = setTimeout(() => {
-
-    setShowText(true);
-
-  }, 1500);
-
-  return () => clearTimeout(timer);
-
-}, []);
   return (
     <section id="home" className="hero">
       {showText && (
-      <div className="hero-left">
-        <span className="hero-tag">// DESIGNER WHO CODES</span>
-        <h1 className="hero-title">Hi, I'm <span className="hero-name">Shritha.</span></h1>
-        <p className="hero-sub"><Typewriter /></p>
-        <div className="hero-btns">
-          <a href="#projects" className="btn-primary">view work</a>
-          <a href="#about" className="btn-ghost">about me</a>
+        <div className="hero-left">
+          <span className="hero-tag">// DESIGNER WHO CODES</span>
+          <h1 className="hero-title">Hi, I'm <span className="hero-name">Shritha.</span></h1>
+          <p className="hero-sub"><Typewriter /></p>
+          <div className="hero-btns">
+            <a href="#projects" className="btn-primary">view work</a>
+            <a href="#about" className="btn-ghost">about me</a>
+          </div>
+          <div className="hero-socials">
+            {[
+              { label: 'LinkedIn', url: 'https://linkedin.com' },
+              { label: 'GitHub', url: 'https://github.com' },
+              { label: 'Behance', url: 'https://behance.net' },
+            ].map(s => (
+              <a key={s.label} href={s.url} target="_blank" rel="noreferrer" className="social-chip">
+                <span className="social-dot" />{s.label}
+              </a>
+            ))}
+          </div>
         </div>
-        <div className="hero-socials">
-          {[
-            { label: 'LinkedIn', url: 'https://linkedin.com' },
-            { label: 'GitHub', url: 'https://github.com' },
-            { label: 'Behance', url: 'https://behance.net' },
-          ].map(s => (
-            <a key={s.label} href={s.url} target="_blank" rel="noreferrer" className="social-chip">
-              <span className="social-dot" />{s.label}
-            </a>
-          ))}
-        </div>
-      </div>
       )}
       <div className="hero-right">
-
-  <div className="anime-video-wrap">
-
-    <video
-      className="anime-video"
-      src="/videos/anime.mp4"
-      autoPlay
-      muted
-      loop
-      playsInline
-    />
-
-    <div className="anime-overlay" />
-
-  </div>
-
-</div>
+        <div className="anime-video-wrap">
+          <video
+            className="anime-video"
+            src="/videos/anime.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+          <div className="anime-overlay" />
+        </div>
+      </div>
     </section>
   );
 }
@@ -255,36 +242,37 @@ function Marquee() {
   );
 }
 
+// FIXED: cat values match exactly what's used in filter logic
 const PROJECTS = [
   {
     id: 1, cat: 'design', tag: 'UX DESIGN — CASE STUDY', name: 'Kaam',
     desc: 'Connecting skilled workers with real opportunities. Full empathy-driven design process.',
-    color: '#c8ff00', preview: null,
+    color: '#c8ff00',
   },
   {
     id: 2, cat: 'design', tag: 'UX DESIGN — CASE STUDY', name: 'Pawse',
     desc: 'A gentle mental health companion app designed for students battling social media addiction.',
-    color: '#b794f4', preview: null,
+    color: '#b794f4',
   },
   {
     id: 3, cat: 'hybrid', tag: 'HYBRID — FIGMA + FLUTTER', name: 'CareTrack',
     desc: 'Healthcare case management app. Designed in Figma, built in Flutter with Provider architecture. Real SaaS product.',
-    color: '#f6ad55', preview: null, featured: true,
+    color: '#f6ad55', featured: true,
   },
   {
     id: 4, cat: 'dev', tag: 'REACT — FULL STACK', name: 'ShopHub',
     desc: 'Ecommerce platform with AI chatbot, responsive mobile-first UI, product search and cart.',
-    color: '#ff6b6b', preview: 'shophub',
+    color: '#ff6b6b',
   },
   {
     id: 5, cat: 'dev', tag: 'REACT — AI POWERED', name: 'CineMatch',
     desc: 'Movie finder with mood picker, AI stats, shared watch rooms, and free streaming search.',
-    color: '#4ecdc4', preview: 'cinematch',
+    color: '#4ecdc4',
   },
   {
     id: 6, cat: 'hybrid', tag: 'HYBRID — REACT + FIGMA', name: 'College ERP',
-    desc: 'Smart college portal — attendance predictor, OD optimizer, backlog tracker. Students deserve better tools.',
-    color: '#c8ff00', preview: null,
+    desc: 'Smart college portal — attendance predictor, OD optimizer, backlog tracker.',
+    color: '#c8ff00',
   },
 ];
 
@@ -335,9 +323,7 @@ function ShopifyScroll({ projects }) {
     <div ref={containerRef} className="shopify-scroll-grid">
       {projects.map((proj, i) => {
         const isCenter = i === 1;
-        const translateY = isCenter
-          ? offset * 60
-          : -offset * 40;
+        const translateY = isCenter ? offset * 60 : -offset * 40;
         return (
           <ProjectCard
             key={proj.id}
@@ -351,16 +337,19 @@ function ShopifyScroll({ projects }) {
 }
 
 function Projects() {
-  const [filter, setFilter] = useState('All');
-  const tabs = ['All', 'Design', 'Development', 'Hybrid'];
+  // FIXED: filter values now match cat values ('design', 'dev', 'hybrid')
+  const [filter, setFilter] = useState('all');
+  const tabs = [
+    { label: 'All', value: 'all' },
+    { label: 'Design', value: 'design' },
+    { label: 'Development', value: 'dev' },
+    { label: 'Hybrid', value: 'hybrid' },
+  ];
 
-  const filtered = PROJECTS.filter(p => filter === 'All' || p.cat === filter);
-  const designProjs = PROJECTS.filter(p => p.cat === 'Design');
-  const devProjs = PROJECTS.filter(p => p.cat === 'Development');
-  const hybridProjs = PROJECTS.filter(p => p.cat === 'Hybrid');
+  const hybridProjs = PROJECTS.filter(p => p.cat === 'hybrid');
 
   return (
-    <section id="projects" className="section projects-section">
+    <section id="projects" className="section">
       <div className="section-header">
         <span className="section-label">// selected work</span>
         <h2 className="section-title">Projects</h2>
@@ -369,50 +358,35 @@ function Projects() {
       <div className="tab-row">
         {tabs.map(t => (
           <button
-            key={t}
-            className={`tab-btn ${filter === t ? 'tab-active' : ''}`}
-            onClick={() => setFilter(t)}
-          >{t}</button>
+            key={t.value}
+            className={`tab-btn ${filter === t.value ? 'tab-active' : ''}`}
+            onClick={() => setFilter(t.value)}
+          >{t.label}</button>
         ))}
       </div>
 
-      {filter === 'All' && (
+      {filter === 'all' && (
         <>
-          <p className="projects-group-label">
-           Design</p>
-
+          <p className="projects-group-label">Design</p>
           <DesignSection />
-
-          <p className="projects-group-label">
-          Development</p>
-
-         <DevelopmentSection />
-
+          <p className="projects-group-label">Development</p>
+          <DevelopmentSection />
           <p className="projects-group-label">Hybrid</p>
           <ShopifyScroll projects={hybridProjs} />
         </>
       )}
-      
-      {filter === 'Design' && (
-       <DesignSection />
+
+      {filter === 'design' && <DesignSection />}
+
+      {filter === 'dev' && <DevelopmentSection />}
+
+      {filter === 'hybrid' && (
+        <div className="projects-grid-flat">
+          {hybridProjs.map(proj => (
+            <ProjectCard key={proj.id} proj={proj} style={{}} />
+          ))}
+        </div>
       )}
-
-      {filter === 'Development' && (
-       <DevelopmentSection />
-    )}
-
-      {filter === 'Hybrid' && (
-       <div className="projects-grid-flat">
-         {hybridProjs.map(proj => (
-            <ProjectCard
-              key={proj.id}
-              proj={proj}
-              style={{}}
-          />
-     ))}
-     </div>
-     )}
-
     </section>
   );
 }
@@ -421,7 +395,7 @@ function About() {
   const skills = ['Figma', 'React', 'Flutter', 'Dart', 'JavaScript', 'HTML/CSS', 'Python', 'Firebase', 'MySQL', 'User Research', 'Wireframing', 'Prototyping'];
 
   return (
-    <section id="about" className="section about-section">
+    <section id="about" className="section">
       <div className="section-header">
         <span className="section-label">/* about me */</span>
         <h2 className="section-title">The Story</h2>
@@ -435,12 +409,44 @@ function About() {
             I design because I care about people. I code because I want to ship what I design. Currently building a real SaaS healthcare product as a Developer & Designer at Sthiram Services.
           </p>
         </div>
-          <div className="skills-wrap">
-            {skills.map(s => (
-              <span key={s} className="skill-tag">{s}</span>
-            ))}
+        <div className="skills-wrap">
+          {skills.map(s => (
+            <span key={s} className="skill-tag">{s}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ExperienceSection() {
+  return (
+    <section className="experience-section">
+      <div className="experience-container">
+        <div className="experience-heading">
+          <p>// SELECTED EXPERIENCE</p>
+        </div>
+        <div className="experience-list">
+          <div className="experience-card">
+            <span className="experience-year">Feb 2026 - Present</span>
+            <h2>Sthiram Services LLP</h2>
+            <h3>Software Developer Intern</h3>
+            <p>
+              Building frontend experiences, interactive UI systems,
+              and internal tools with a focus on clean design and usability.
+            </p>
+          </div>
+          <div className="experience-card">
+            <span className="experience-year">May 2025 - June 2025</span>
+            <h2>Internship Studio</h2>
+            <h3>UI/UX Intern</h3>
+            <p>
+              Worked on user flows, wireframes, visual systems,
+              and high-fidelity interfaces for product concepts.
+            </p>
           </div>
         </div>
+      </div>
     </section>
   );
 }
@@ -486,49 +492,6 @@ function Footer() {
   );
 }
 
-function ExperienceSection() {
-  return (
-   <section className="experience-section">
-  <div className="experience-container">
-
-    <div className="experience-heading">
-      <p>//SELECTED EXPERIENCE</p>
-    </div>
-
-    <div className="experience-list">
-
-      <div className="experience-card">
-        <span className="experience-year">2025 - Present</span>
-
-        <h2>Sthiram Services LLP</h2>
-
-        <h3>Software Developer Intern</h3>
-
-        <p>
-          Building frontend experiences, interactive UI systems,
-          and internal tools with a focus on clean design and usability.
-        </p>
-      </div>
-
-      <div className="experience-card">
-        <span className="experience-year">2025</span>
-
-        <h2>Internship Studio</h2>
-
-        <h3>UI/UX Intern</h3>
-
-        <p>
-          Worked on user flows, wireframes, visual systems,
-          and high-fidelity interfaces for product concepts.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-  );
-}
-
 export default function App() {
   const [entered, setEntered] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -551,7 +514,7 @@ export default function App() {
         <Collage />
         <LogoMarquee />
         <Footer />
-        <BottomNav /> 
+        <BottomNav />
       </div>
     </div>
   );
