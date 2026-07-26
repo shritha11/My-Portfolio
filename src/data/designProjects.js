@@ -14,6 +14,13 @@ const designProjects = [
     image: "/images/cravecheck.png",
     link: "https://behance.net/",
   },
+  {
+    id: 3,
+    title: "Kaam",
+    description: "A worker first gig platform.",
+    image: "/images/cravecheck.png",
+    link: "https://www.behance.net/gallery/253251393/Kaam-A-worker-first-gig-platform",
+  },
 ];
 
 export default designProjects;
