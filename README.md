@@ -34,7 +34,7 @@ A digital detox / wellness app case study, my first proper UX project. Full user
 A multi-agent AI platform that builds you a full website and pitch deck from a prompt — not just the copy, the actual frontend code. Under the hood it's a LangGraph pipeline (planner → researcher → architecture planner → file generator → validator/repair) that plans out the site, researches real content for it, and generates working React components with a live code preview (Sandpack, VS Code-style file tree). You can push straight to a GitHub repo in one click and deploy the frontend to Vercel from there. Has full auth, session history, and lets you go back and edit individual files without regenerating the whole thing.
 **Stack:** React + Vite frontend, Node.js/Express backend, Firebase
 
-### Eunio — AI study companion
+### Eunoia — AI study companion
 A mobile study app built around RAG and OCR — upload your notes (PDFs, docs, scanned pages) and ask questions grounded in your own material. It'll summarize, generate quizzes and flashcards from your docs, and if it's a coding subject it'll pull out practice questions and examples too. Keeps track of how many quizzes/flashcards you've done and your recent sessions, and you can just store documents there to read later without doing anything else with them. Also has a "fun mode" for when you're burnt out and don't want to study — random games and quizzes to take a break.
 **Stack:** Flutter frontend, FastAPI backend, PostgreSQL
 
