@@ -9,13 +9,6 @@ const designProjects = [
   },
   {
     id: 2,
-    title: "Crave Check",
-    description: "Mindful dopamine tracking app.",
-    image: "/images/cravecheck.png",
-    link: "https://behance.net/",
-  },
-  {
-    id: 3,
     title: "Kaam",
     description: "A worker first gig platform.",
     image: "/images/cravecheck.png",
